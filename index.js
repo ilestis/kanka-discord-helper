@@ -8,7 +8,6 @@ client.once('ready', () => {
 });
 
 const commands = {
-    'help': {title: 'This help list', body: null},
     'kanka': {title: 'Link to Kanka', 'body' : 'https://kanka.io'},
     'faq': {title: 'Link to the Kanka FAQ', body: 'https://kanka.io/en/faq'},
     'yt': {title: 'Kanka\'s Youtube channel', body: 'https://www.youtube.com/channel/UCwb3pl0LOlxd3GvMPAXIEog'},
@@ -26,16 +25,16 @@ const commands = {
 
 client.login(process.env.DISCORD_BOT_TOKEN);
 client.on('message', message => {
-    if (message.content === '$kbhelp') {
+    if (message.content === '$kb') {
         var help = "What do you need help with?\n";
         for (const property in commands) {
-            help += ' * `$kb' + property + '` ' + commands[property].title + "\n";
+            help += ' * `$kb ' + property + '` ' + commands[property].title + "\n";
         }
 
         message.channel.send(help);
     }
-    else if (message.content.substr(0, 3) === '$kb') {
-        var command = message.content.slice(3);
+    else if (message.content.substr(0, 4) === '$kb ') {
+        var command = message.content.slice(4);
         if (typeof(commands[command]) !== 'undefined') {
             message.channel.send(commands[command].body);
         }
