@@ -4,7 +4,16 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.once('ready', () => {
-    console.log('Ready!');
+    console.log('Ready!')
+
+    client.user.setStatus('online')
+    client.user.setPresence({
+        activity: {
+            name: 'Type $kb for help',
+            type: 'WATCHING'
+        }, status: 'online'
+    });
+
 });
 
 const commands = {
